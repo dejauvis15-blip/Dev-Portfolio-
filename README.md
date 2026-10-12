@@ -18,7 +18,7 @@ It links to my UX design portfolio at [jauvis-dozier-portfolio.vercel.app](https
 
 | Color        | Hex       | Used for                     |
 | ------------ | --------- | ---------------------------- |
-| Smoky Black  | `#11120D` | Background                   |
+| Black        | `#000000` | Background                   |
 | Olive Drab   | `#565449` | Hover states, dividers       |
 | Bone         | `#D8CFBC` | Headings, secondary text     |
 | Floral White | `#FFFBF4` | Main text, snow              |

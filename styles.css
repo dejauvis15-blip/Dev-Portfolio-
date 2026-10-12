@@ -1,11 +1,11 @@
 :root {
   /* Palette */
-  --smoky: #11120d;   /* smoky black: main color */
+  --black: #000000;   /* pure black: main color */
   --olive: #565449;   /* olive drab */
   --bone: #d8cfbc;    /* bone */
   --floral: #fffbf4;  /* floral white: text / accent */
 
-  --bg: var(--smoky);
+  --bg: var(--black);
   --fg: var(--floral);
   --muted: var(--bone);
   --dim: rgba(216, 207, 188, 0.55);
