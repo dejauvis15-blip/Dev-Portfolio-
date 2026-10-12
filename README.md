@@ -6,7 +6,7 @@ It links to my UX design portfolio at [jauvis-dozier-portfolio.vercel.app](https
 ## Built with
 
 - Plain **HTML, CSS and JavaScript**, with no framework or build step
-- **Fira Code** for the name and **JetBrains Mono** for everything else
+- **Reenie Beanie** (pencil handwriting) for the name and **JetBrains Mono** for everything else
 - **`<canvas>`** for the snow
 
 ## Features
