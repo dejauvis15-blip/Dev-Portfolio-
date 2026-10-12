@@ -71,7 +71,9 @@ a.row:hover { background: rgba(86, 84, 73, 0.45); color: var(--hover); }
 .logo { width: auto; height: 14px; display: block; }
 a.row:hover .meta { color: var(--bone); }
 
-.misc { padding: 6px 12px; }
+.misc { display: block; margin: 2px 0; padding: 6px 12px; border-radius: 8px; transition: background .15s, color .15s; }
+a.misc:hover { background: rgba(86, 84, 73, 0.45); color: var(--hover); }
+a.row:focus-visible, a.misc:focus-visible { outline: 1px solid var(--bone); outline-offset: 2px; }
 .sep { color: var(--olive); margin: 0 0.5rem; }
 /* Pads each label to its section's longest one (--key chars, plus the old space) so the | separators line up */
 .key { display: inline-block; width: calc((var(--key) + 1) * (1ch + 0.05em)); }
