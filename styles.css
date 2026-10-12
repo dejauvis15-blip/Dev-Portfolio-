@@ -48,12 +48,12 @@ a { color: inherit; text-decoration: none; }
 .socials svg { width: 14px; height: 14px; }
 
 .avatar {
-  display: block; flex-shrink: 0; width: 168px; aspect-ratio: 498 / 279; overflow: hidden;
-  border: 1px solid var(--border); border-radius: 14px; background: var(--olive);
-  transition: transform .2s, box-shadow .2s, border-color .2s;
+  /* transparent cutout, so no box: the figure sits straight on the page */
+  display: block; flex-shrink: 0; width: 168px; aspect-ratio: 340 / 192;
+  transition: transform .2s, filter .2s;
 }
-.avatar:hover { transform: scale(1.04); border-color: var(--bone); box-shadow: 0 0 22px rgba(255, 251, 244, 0.18); }
-.avatar-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.avatar:hover { transform: scale(1.04); filter: drop-shadow(0 0 10px rgba(255, 251, 244, 0.22)); }
+.avatar-img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
 .bio { color: var(--muted); max-width: 60ch; padding: 0 12px 0.5rem 0; }
 
