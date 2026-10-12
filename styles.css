@@ -21,8 +21,6 @@ body {
   min-height: 100vh;
   padding-bottom: calc(var(--snow-h) * 0.6);
   background-color: var(--bg);
-  background-image: radial-gradient(rgba(216, 207, 188, 0.07) 1px, transparent 1px);
-  background-size: 24px 24px;
   color: var(--fg);
   /* Same type as alex-chen.dev: JetBrains Mono, 13px, weight 500, wide tracking */
   font-family: "JetBrains Mono", ui-monospace, monospace;
