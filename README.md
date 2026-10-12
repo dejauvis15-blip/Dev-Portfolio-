@@ -33,7 +33,7 @@ All four are CSS variables at the top of `styles.css`, and `main.js` reads the s
 | `index.html` | Page content: intro, experience, links        |
 | `styles.css` | Layout, colors and type                       |
 | `main.js`    | Pixel name and snow animation                 |
-| `aokiji.png` | Avatar image                                  |
+| `aokiji.webp` | Animated avatar                             |
 
 ## Run it locally
 
