@@ -32,7 +32,7 @@ All four are CSS variables at the top of `styles.css`, and `main.js` reads the s
 | `index.html` | Page content: intro, experience, links        |
 | `styles.css` | Layout, colors and type                       |
 | `main.js`    | Snow animation                                |
-| `aokiji.webp` | Animated avatar                             |
+| `brook.webp` | Animated avatar (transparent)                |
 | `tombras.png`, `utk.png` | Company logos in the experience list |
 
 ## Run it locally
