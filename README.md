@@ -34,6 +34,7 @@ All four are CSS variables at the top of `styles.css`, and `main.js` reads the s
 | `main.js`    | Snow animation                                |
 | `brook.webp` | Animated avatar (transparent)                |
 | `favicon.gif` | Animated Brook browser-tab icon             |
+| `apple-touch-icon.png` | Home-screen icon for phones        |
 | `tombras.png`, `utk.png` | Company logos in the experience list |
 
 ## Run it locally
