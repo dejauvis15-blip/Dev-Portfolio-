@@ -72,7 +72,8 @@ a.row:hover { background: rgba(86, 84, 73, 0.45); color: var(--hover); }
 .row-left { min-width: 0; }
 .at { color: var(--dim); }
 .desc { color: var(--dim); }
-.meta { color: var(--dim); flex-shrink: 0; text-align: right; }
+.meta { color: var(--dim); flex-shrink: 0; text-align: right; display: inline-flex; align-items: center; gap: 8px; }
+.logo { width: auto; height: 14px; display: block; }
 a.row:hover .meta { color: var(--bone); }
 
 .misc { padding: 6px 12px; }
