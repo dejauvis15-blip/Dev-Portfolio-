@@ -90,7 +90,9 @@ a.row:hover .meta { color: var(--bone); }
   .page { padding: 1.15rem 1.25rem 1.5rem; }
   .top { align-items: flex-start; }
   .avatar { width: 116px; }
-  .row { padding: 6px 8px; }
+  /* Keep "role | company" on one line; the date drops below it */
+  .row { padding: 6px 8px; flex-wrap: wrap; row-gap: 2px; }
+  .row-left { white-space: nowrap; }
   .misc { padding: 6px 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
