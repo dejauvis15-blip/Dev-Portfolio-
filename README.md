@@ -6,13 +6,12 @@ It links to my UX design portfolio at [jauvis-dozier-portfolio.vercel.app](https
 ## Built with
 
 - Plain **HTML, CSS and JavaScript**, with no framework or build step
-- **JetBrains Mono** for all text
-- **`<canvas>`** for the snow and the pixel-style name
+- **Fira Code** for the name and **JetBrains Mono** for everything else
+- **`<canvas>`** for the snow
 
 ## Features
 
 - **Falling snow:** flakes in three depth layers, blown by gusting wind, settling onto a drift that builds up where they land
-- **Pixel name:** the name is drawn on a canvas as a grid of small squares
 - **Reduced motion:** the animation stays still for visitors who ask their device to reduce motion
 
 ## Palette
@@ -32,7 +31,7 @@ All four are CSS variables at the top of `styles.css`, and `main.js` reads the s
 | ------------ | --------------------------------------------- |
 | `index.html` | Page content: intro, experience, links        |
 | `styles.css` | Layout, colors and type                       |
-| `main.js`    | Pixel name and snow animation                 |
+| `main.js`    | Snow animation                                |
 | `aokiji.webp` | Animated avatar                             |
 | `tombras.png`, `utk.png` | Company logos in the experience list |
 

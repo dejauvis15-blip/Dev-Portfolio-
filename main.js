@@ -1,37 +1,5 @@
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Draw the name as a grid of square "pixels" for a bitmap look.
-function renderName() {
-  const el = document.querySelector('.name');
-  const canvas = el.querySelector('.name-canvas');
-  const rect = el.getBoundingClientRect();
-  const dpr = window.devicePixelRatio || 1;
-  const w = Math.ceil(rect.width), h = Math.ceil(rect.height);
-  if (!w || !h) return;
-
-  const off = document.createElement('canvas');
-  off.width = w; off.height = h;
-  const o = off.getContext('2d');
-  const style = getComputedStyle(el);
-  o.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
-  o.textBaseline = 'middle';
-  o.fillText(el.querySelector('.name-text').textContent, 0, h / 2 + 1);
-  const data = o.getImageData(0, 0, w, h).data;
-
-  canvas.width = w * dpr; canvas.height = h * dpr;
-  const c = canvas.getContext('2d');
-  c.scale(dpr, dpr);
-  c.fillStyle = style.color;
-  const step = 1.5;
-  for (let y = 0; y < h; y += step) {
-    for (let x = 0; x < w; x += step) {
-      const a = data[(Math.floor(y) * w + Math.floor(x)) * 4 + 3];
-      if (a > 110) c.fillRect(x, y, step * 0.82, step * 0.82);
-    }
-  }
-  el.classList.add('rendered');
-}
-
 // Snow along the bottom of the page: layered flakes blown by gusting wind,
 // settling onto a drift that slowly builds up where they land.
 function startSnow() {
@@ -215,5 +183,4 @@ function startSnow() {
   requestAnimationFrame(frame);
 }
 
-document.fonts.ready.then(renderName);
 startSnow();
