@@ -1,8 +1,7 @@
 # jauvis dozier — dev portfolio
 
 My developer portfolio: a minimal, monospace one-pager with falling snow along the bottom.
-It links to my UX design portfolio at [jauvis-dozier-portfolio.vercel.app](https://jauvis-dozier-portfolio.vercel.app/).
-
+It links to my developer portfolio. https://www.jauvis.dev/
 ## Built with
 
 - Plain **HTML, CSS and JavaScript**, with no framework or build step
