@@ -11,12 +11,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <!-- Hold the page behind the Brook loader; without JS the page just shows normally -->
+  <script>document.documentElement.classList.add('loading');</script>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+  <!-- Loading screen: Brook in the middle, then he flies up into the avatar spot -->
+  <div class="loader" aria-hidden="true">
+    <img src="brook.webp" alt="" class="loader-img" width="340" height="192">
+    <span class="loader-count">000</span>
+  </div>
+
   <canvas class="snow" aria-hidden="true"></canvas>
 
   <main class="page">

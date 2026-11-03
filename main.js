@@ -184,3 +184,62 @@ function startSnow() {
 }
 
 startSnow();
+
+// Loading screen: Brook sits in the middle while a counter runs to 100,
+// then he flies up and shrinks into the avatar spot as the page fades in.
+function startLoader() {
+  const root = document.documentElement;
+  const loader = document.querySelector('.loader');
+  if (!loader || !root.classList.contains('loading')) return;
+  const brook = loader.querySelector('.loader-img');
+  const count = loader.querySelector('.loader-count');
+  const avatar = document.querySelector('.avatar-img');
+
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  scrollTo(0, 0);
+
+  const done = () => { root.classList.remove('loading', 'landing'); };
+  if (reduceMotion) { done(); return; }
+
+  const HOLD = 1400; // ms the counter takes to reach 100
+  const ready = Promise.all([
+    brook.decode ? brook.decode().catch(() => {}) : null,
+    document.fonts ? document.fonts.ready : null,
+  ]);
+
+  const t0 = performance.now();
+  (function tick(now) {
+    const p = Math.min(1, (now - t0) / HOLD);
+    count.textContent = String(Math.round(p * 100)).padStart(3, '0');
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+
+  Promise.all([ready, new Promise(r => setTimeout(r, HOLD + 150))]).then(() => {
+    // FLIP: measure where Brook is now and where the avatar sits, then animate between
+    const from = brook.getBoundingClientRect();
+    const to = avatar.getBoundingClientRect();
+    const dx = to.left - from.left, dy = to.top - from.top, k = to.width / from.width;
+
+    root.classList.add('landing');   // keep the real avatar hidden until Brook lands
+    count.style.opacity = 0;
+    const ease = 'cubic-bezier(.7, 0, .2, 1)';
+    const fly = brook.animate(
+      [{ transform: 'none' }, { transform: `translate(${dx}px, ${dy}px) scale(${k})` }],
+      { duration: 900, easing: ease, fill: 'forwards' }
+    );
+    loader.animate([{ backgroundColor: getComputedStyle(loader).backgroundColor }, { backgroundColor: 'transparent' }],
+      { duration: 700, delay: 250, easing: 'ease', fill: 'forwards' });
+
+    // Start the page's staggered fade-in while Brook is still in the air
+    setTimeout(() => root.classList.remove('loading'), 350);
+    // ...but keep the loader (and flying Brook) on screen until he lands
+    loader.style.display = 'flex';
+    fly.finished.then(() => {
+      root.classList.remove('landing');
+      loader.remove();
+      root.classList.remove('loading');
+    });
+  });
+}
+
+startLoader();

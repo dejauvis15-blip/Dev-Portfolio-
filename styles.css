@@ -100,3 +100,17 @@ a.row:focus-visible, a.misc:focus-visible { outline: 1px solid var(--bone); outl
 @media (prefers-reduced-motion: reduce) {
   .fade { animation: none; opacity: 1; transform: none; }
 }
+
+/* Loading screen: Brook centered on black, then he flies into the avatar spot */
+.loader {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  background: var(--bg);
+}
+html:not(.loading) .loader { display: none; }
+.loader-img { width: min(340px, 78vw); height: auto; display: block; transform-origin: 0 0; will-change: transform; }
+.loader-count { color: var(--dim); font-variant-numeric: tabular-nums; letter-spacing: 0.2em; transition: opacity .25s; }
+/* While loading, the page waits (no transform, so the avatar's spot can be measured exactly) */
+html.loading .fade { animation: none; opacity: 0; transform: none; }
+html.loading body { overflow: hidden; }
+html.landing .avatar-img { visibility: hidden; }
