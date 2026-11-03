@@ -47,7 +47,7 @@ a { color: inherit; text-decoration: none; }
 
 .avatar {
   /* transparent cutout, so no box: the figure sits straight on the page */
-  display: block; flex-shrink: 0; width: 168px; aspect-ratio: 340 / 192;
+  display: block; flex-shrink: 0; width: 150px; aspect-ratio: 685 / 480;
   transition: transform .2s, filter .2s;
 }
 .avatar:hover { transform: scale(1.04); filter: drop-shadow(0 0 10px rgba(255, 251, 244, 0.22)); }
@@ -91,7 +91,7 @@ a.row:focus-visible, a.misc:focus-visible { outline: 1px solid var(--bone); outl
   :root { --snow-h: clamp(130px, 24svh, 190px); }
   .page { padding: 1.15rem 1.25rem 1.5rem; }
   .top { align-items: flex-start; }
-  .avatar { width: 116px; }
+  .avatar { width: 104px; }
   /* Keep "role | company" on one line; the date drops below it */
   .row { padding: 6px 8px; flex-wrap: wrap; row-gap: 2px; }
   .row-left { white-space: nowrap; }
@@ -101,14 +101,14 @@ a.row:focus-visible, a.misc:focus-visible { outline: 1px solid var(--bone); outl
   .fade { animation: none; opacity: 1; transform: none; }
 }
 
-/* Loading screen: Brook centered on black, then he flies into the avatar spot */
+/* Loading screen: the avatar centered on black, then it flies into the avatar spot */
 .loader {
   position: fixed; inset: 0; z-index: 100;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
   background: var(--bg);
 }
 html:not(.loading) .loader { display: none; }
-.loader-img { width: min(340px, 78vw); height: auto; display: block; transform-origin: 0 0; will-change: transform; }
+.loader-img { width: min(320px, 70vw); height: auto; display: block; transform-origin: 0 0; will-change: transform; }
 .loader-name {
   font-family: "Reenie Beanie", cursive; font-size: clamp(34px, 7vw, 52px); line-height: 1; letter-spacing: 0.02em;
   color: var(--fg); opacity: 0; transform: translateY(6px);

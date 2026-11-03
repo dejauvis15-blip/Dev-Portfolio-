@@ -185,13 +185,13 @@ function startSnow() {
 
 startSnow();
 
-// Loading screen: Brook sits in the middle with the name under him,
-// then he flies up and shrinks into the avatar spot as the page fades in.
+// Loading screen: the avatar sits in the middle with the name under it,
+// then it flies up and shrinks into the avatar spot as the page fades in.
 function startLoader() {
   const root = document.documentElement;
   const loader = document.querySelector('.loader');
   if (!loader || !root.classList.contains('loading')) return;
-  const brook = loader.querySelector('.loader-img');
+  const pic = loader.querySelector('.loader-img');
   const name = loader.querySelector('.loader-name');
   const avatar = document.querySelector('.avatar-img');
 
@@ -201,31 +201,31 @@ function startLoader() {
   const done = () => { root.classList.remove('loading', 'landing'); };
   if (reduceMotion) { done(); return; }
 
-  const HOLD = 1400; // ms Brook and the name stay centered
+  const HOLD = 1400; // ms the avatar and the name stay centered
   const ready = Promise.all([
-    brook.decode ? brook.decode().catch(() => {}) : null,
+    pic.decode ? pic.decode().catch(() => {}) : null,
     document.fonts ? document.fonts.ready : null,
   ]);
 
   Promise.all([ready, new Promise(r => setTimeout(r, HOLD + 150))]).then(() => {
-    // FLIP: measure where Brook is now and where the avatar sits, then animate between
-    const from = brook.getBoundingClientRect();
+    // FLIP: measure where the image is now and where the avatar sits, then animate between
+    const from = pic.getBoundingClientRect();
     const to = avatar.getBoundingClientRect();
     const dx = to.left - from.left, dy = to.top - from.top, k = to.width / from.width;
 
-    root.classList.add('landing');   // keep the real avatar hidden until Brook lands
+    root.classList.add('landing');   // keep the real avatar hidden until it lands
     name.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill: 'forwards' });
     const ease = 'cubic-bezier(.7, 0, .2, 1)';
-    const fly = brook.animate(
+    const fly = pic.animate(
       [{ transform: 'none' }, { transform: `translate(${dx}px, ${dy}px) scale(${k})` }],
       { duration: 900, easing: ease, fill: 'forwards' }
     );
     loader.animate([{ backgroundColor: getComputedStyle(loader).backgroundColor }, { backgroundColor: 'transparent' }],
       { duration: 700, delay: 250, easing: 'ease', fill: 'forwards' });
 
-    // Start the page's staggered fade-in while Brook is still in the air
+    // Start the page's staggered fade-in while it's still in the air
     setTimeout(() => root.classList.remove('loading'), 350);
-    // ...but keep the loader (and flying Brook) on screen until he lands
+    // ...but keep the loader (and the flying image) on screen until it lands
     loader.style.display = 'flex';
     fly.finished.then(() => {
       root.classList.remove('landing');
