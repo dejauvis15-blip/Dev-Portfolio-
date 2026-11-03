@@ -185,14 +185,14 @@ function startSnow() {
 
 startSnow();
 
-// Loading screen: Brook sits in the middle while a counter runs to 100,
+// Loading screen: Brook sits in the middle with the name under him,
 // then he flies up and shrinks into the avatar spot as the page fades in.
 function startLoader() {
   const root = document.documentElement;
   const loader = document.querySelector('.loader');
   if (!loader || !root.classList.contains('loading')) return;
   const brook = loader.querySelector('.loader-img');
-  const count = loader.querySelector('.loader-count');
+  const name = loader.querySelector('.loader-name');
   const avatar = document.querySelector('.avatar-img');
 
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -201,18 +201,11 @@ function startLoader() {
   const done = () => { root.classList.remove('loading', 'landing'); };
   if (reduceMotion) { done(); return; }
 
-  const HOLD = 1400; // ms the counter takes to reach 100
+  const HOLD = 1400; // ms Brook and the name stay centered
   const ready = Promise.all([
     brook.decode ? brook.decode().catch(() => {}) : null,
     document.fonts ? document.fonts.ready : null,
   ]);
-
-  const t0 = performance.now();
-  (function tick(now) {
-    const p = Math.min(1, (now - t0) / HOLD);
-    count.textContent = String(Math.round(p * 100)).padStart(3, '0');
-    if (p < 1) requestAnimationFrame(tick);
-  })(t0);
 
   Promise.all([ready, new Promise(r => setTimeout(r, HOLD + 150))]).then(() => {
     // FLIP: measure where Brook is now and where the avatar sits, then animate between
@@ -221,7 +214,7 @@ function startLoader() {
     const dx = to.left - from.left, dy = to.top - from.top, k = to.width / from.width;
 
     root.classList.add('landing');   // keep the real avatar hidden until Brook lands
-    count.style.opacity = 0;
+    name.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill: 'forwards' });
     const ease = 'cubic-bezier(.7, 0, .2, 1)';
     const fly = brook.animate(
       [{ transform: 'none' }, { transform: `translate(${dx}px, ${dy}px) scale(${k})` }],
