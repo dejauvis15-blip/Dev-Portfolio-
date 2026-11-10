@@ -185,53 +185,37 @@ function startSnow() {
 
 startSnow();
 
-// Loading screen: the avatar sits in the middle with the name under it,
-// then it flies up and shrinks into the avatar spot as the page fades in.
+// Loading screen: the fire title card plays with the name under it,
+// then it flares up and fades out as the page fades in behind it.
 function startLoader() {
   const root = document.documentElement;
   const loader = document.querySelector('.loader');
   if (!loader || !root.classList.contains('loading')) return;
   const pic = loader.querySelector('.loader-img');
   const name = loader.querySelector('.loader-name');
-  const avatar = document.querySelector('.avatar-img');
 
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   scrollTo(0, 0);
 
-  const done = () => { root.classList.remove('loading', 'landing'); };
-  if (reduceMotion) { done(); return; }
+  if (reduceMotion) { root.classList.remove('loading'); return; }
 
-  const HOLD = 1400; // ms the avatar and the name stay centered
+  const HOLD = 1600; // ms the title card and the name stay up
   const ready = Promise.all([
     pic.decode ? pic.decode().catch(() => {}) : null,
     document.fonts ? document.fonts.ready : null,
   ]);
 
-  Promise.all([ready, new Promise(r => setTimeout(r, HOLD + 150))]).then(() => {
-    // FLIP: measure where the image is now and where the avatar sits, then animate between
-    const from = pic.getBoundingClientRect();
-    const to = avatar.getBoundingClientRect();
-    const dx = to.left - from.left, dy = to.top - from.top, k = to.width / from.width;
-
-    root.classList.add('landing');   // keep the real avatar hidden until it lands
+  Promise.all([ready, new Promise(r => setTimeout(r, HOLD))]).then(() => {
+    loader.style.display = 'flex'; // keep it up while it fades, after .loading is gone
     name.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill: 'forwards' });
-    const ease = 'cubic-bezier(.7, 0, .2, 1)';
-    const fly = pic.animate(
-      [{ transform: 'none' }, { transform: `translate(${dx}px, ${dy}px) scale(${k})` }],
-      { duration: 900, easing: ease, fill: 'forwards' }
-    );
-    loader.animate([{ backgroundColor: getComputedStyle(loader).backgroundColor }, { backgroundColor: 'transparent' }],
-      { duration: 700, delay: 250, easing: 'ease', fill: 'forwards' });
+    pic.animate([{ transform: 'none', opacity: 1 }, { transform: 'scale(1.08)', opacity: 0 }],
+      { duration: 650, easing: 'cubic-bezier(.4, 0, .2, 1)', fill: 'forwards' });
+    const out = loader.animate([{ opacity: 1 }, { opacity: 0 }],
+      { duration: 600, delay: 250, easing: 'ease', fill: 'forwards' });
 
-    // Start the page's staggered fade-in while it's still in the air
-    setTimeout(() => root.classList.remove('loading'), 350);
-    // ...but keep the loader (and the flying image) on screen until it lands
-    loader.style.display = 'flex';
-    fly.finished.then(() => {
-      root.classList.remove('landing');
-      loader.remove();
-      root.classList.remove('loading');
-    });
+    // Start the page's staggered fade-in while the loader is fading
+    setTimeout(() => root.classList.remove('loading'), 300);
+    out.finished.then(() => loader.remove());
   });
 }
 
