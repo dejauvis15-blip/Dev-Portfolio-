@@ -199,7 +199,7 @@ function startLoader() {
 
   if (reduceMotion) { root.classList.remove('loading'); return; }
 
-  const CLIP = 3750; // ms: the clip is 75 frames at 50ms, and plays once
+  const CLIP = 2500; // ms: the clip is 50 frames at 50ms, and plays once
   const ready = Promise.all([
     pic.decode ? pic.decode().catch(() => {}) : null,
     document.fonts ? document.fonts.ready : null,
