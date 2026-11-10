@@ -185,7 +185,7 @@ function startSnow() {
 
 startSnow();
 
-// Loading screen: the fire title card plays with the name under it,
+// Loading screen: the Luffy clip plays once with the name under it,
 // then it flares up and fades out as the page fades in behind it.
 function startLoader() {
   const root = document.documentElement;
@@ -199,13 +199,14 @@ function startLoader() {
 
   if (reduceMotion) { root.classList.remove('loading'); return; }
 
-  const HOLD = 1600; // ms the title card and the name stay up
+  const CLIP = 3750; // ms: the clip is 75 frames at 50ms, and plays once
   const ready = Promise.all([
     pic.decode ? pic.decode().catch(() => {}) : null,
     document.fonts ? document.fonts.ready : null,
   ]);
 
-  Promise.all([ready, new Promise(r => setTimeout(r, HOLD))]).then(() => {
+  // Time from when the clip is ready to play, so the fade lands as it ends
+  ready.then(() => new Promise(r => setTimeout(r, CLIP - 300))).then(() => {
     loader.style.display = 'flex'; // keep it up while it fades, after .loading is gone
     name.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill: 'forwards' });
     pic.animate([{ transform: 'none', opacity: 1 }, { transform: 'scale(1.08)', opacity: 0 }],
