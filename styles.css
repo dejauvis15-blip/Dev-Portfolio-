@@ -47,7 +47,7 @@ a { color: inherit; text-decoration: none; }
 
 .avatar {
   /* transparent cutout, so no box: the figure sits straight on the page */
-  display: block; flex-shrink: 0; width: 150px; aspect-ratio: 685 / 480;
+  display: block; flex-shrink: 0; width: 190px; aspect-ratio: 600 / 334;
   transition: transform .2s, filter .2s;
 }
 .avatar:hover { transform: scale(1.04); filter: drop-shadow(0 0 10px rgba(255, 251, 244, 0.22)); }
@@ -91,7 +91,7 @@ a.row:focus-visible, a.misc:focus-visible { outline: 1px solid var(--bone); outl
   :root { --snow-h: clamp(130px, 24svh, 190px); }
   .page { padding: 1.15rem 1.25rem 1.5rem; }
   .top { align-items: flex-start; }
-  .avatar { width: 104px; }
+  .avatar { width: 130px; }
   /* Keep "role | company" on one line; the date drops below it */
   .row { padding: 6px 8px; flex-wrap: wrap; row-gap: 2px; }
   .row-left { white-space: nowrap; }
